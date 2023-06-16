@@ -9,6 +9,8 @@
 
 float calculate_accuracy(float pi);
 
+//Kernel to do parallel Monte Carlo on the GPU
+//d_area_count[index] is 1 if the point is inside the circle and 0 if outside
 __global__ void mc(float *d_x, float *d_y,int *d_area_count){
 	int index = threadIdx.x + blockIdx.x*blockDim.x;
 	if(d_x[index]*d_x[index] + d_y[index]*d_y[index] <= 1.0f){
@@ -20,6 +22,7 @@ __global__ void mc(float *d_x, float *d_y,int *d_area_count){
 	}
 }
 
+//Structure to calculate execution time
 struct GpuTimer {
   cudaEvent_t start;
   cudaEvent_t stop;
@@ -50,6 +53,7 @@ struct GpuTimer {
   }
 };
 
+//Main
 int main(void){
 	//Try different number of randoms used
 	int num_randoms[] = {10,100,1000,10000,100000,1000000,10000000,100000000};
@@ -69,7 +73,8 @@ int main(void){
 		float *d_x; float *d_y;
 		int *d_area_count;
 		int *h_area_count;
-
+		
+		//Allocate memory space 
 		int mem_size = N*sizeof(float);
 		h_x = (float*)malloc(mem_size);
 		h_y = (float*)malloc(mem_size);
@@ -91,20 +96,22 @@ int main(void){
 		curandGenerateUniform(gen,d_x,N);
 		curandGenerateUniform(gen,d_y,N);	
 	
+		//Call kernel
 		mc<<<N/128,128>>>(d_x,d_y,d_area_count);
 
-		//Copy result from device to host
-		//cudaMemcpy(h_x,d_x,mem_size,cudaMemcpyDeviceToHost);
-		//cudaMemcpy(h_y,d_y,mem_size,cudaMemcpyDeviceToHost);
-	
-		//printf("Success %f %f %f",h_x[0], h_x[1], h_x[2]);
+		//Copy data from device to host
 		cudaMemcpy(h_area_count,d_area_count,mem_size,cudaMemcpyDeviceToHost);
+		
+		//Sum up the number of points inside the circle
 		for(int i = 0; i < N; i++){
 			area += h_area_count[i];
 		}
+		
+		//Calculate pi
 		float pi = (4*area)/float(N);
 		printf("Pi is %f \n",pi);
 		printf("The error is %f \n", calculate_accuracy(pi));
+		
 		//Clean up memory
 		free(h_x);
 		free(h_y);
@@ -118,6 +125,7 @@ int main(void){
 	return(0);	
 }
 
+//Calculate accuracy of the output 
 float calculate_accuracy(float pi){
 	return float(PI - pi);
 }

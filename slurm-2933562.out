@@ -1,35 +1,37 @@
 Number of randoms used 10 
 Pi is 0.000000 
 The error is 3.141593 
-Execution time: 35.133777
+Execution time: 34.541440
 Number of randoms used 100 
 Pi is 0.000000 
 The error is 3.141593 
-Execution time: 0.018627
+Execution time: 0.019014
 Number of randoms used 1000 
 Pi is 2.800000 
 The error is 0.341593 
-Execution time: 0.018506
+Execution time: 0.018982
 Number of randoms used 10000 
 Pi is 3.105600 
 The error is 0.035993 
-Execution time: 0.021475
+Execution time: 0.021782
 Number of randoms used 100000 
 Pi is 3.135280 
 The error is 0.006313 
-Execution time: 0.097002
+Execution time: 0.083731
 Number of randoms used 1000000 
 Pi is 3.140372 
 The error is 0.001221 
-Execution time: 0.628490
+Execution time: 0.560160
 Number of randoms used 10000000 
 Pi is 3.140924 
 The error is 0.000668 
-Execution time: 4.208317
+Execution time: 4.179475
 Number of randoms used 100000000 
 Pi is 3.141581 
 The error is 0.000012 
-Execution time: 40.161664
+Execution time: 40.067368
 
-Pi using OpenMp:	3.141664
-Execution time = 1.937985e-02 s
+Using Open MPNumber of randoms used: 10 
+
+Pi using OpenMp:	3.200000
+Execution time = 1.001358e-05 s
