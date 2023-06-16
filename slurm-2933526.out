@@ -1,0 +1,35 @@
+Number of randoms used 10 
+Pi is 0.000000 
+The error is 3.141593 
+Execution time: 35.133777
+Number of randoms used 100 
+Pi is 0.000000 
+The error is 3.141593 
+Execution time: 0.018627
+Number of randoms used 1000 
+Pi is 2.800000 
+The error is 0.341593 
+Execution time: 0.018506
+Number of randoms used 10000 
+Pi is 3.105600 
+The error is 0.035993 
+Execution time: 0.021475
+Number of randoms used 100000 
+Pi is 3.135280 
+The error is 0.006313 
+Execution time: 0.097002
+Number of randoms used 1000000 
+Pi is 3.140372 
+The error is 0.001221 
+Execution time: 0.628490
+Number of randoms used 10000000 
+Pi is 3.140924 
+The error is 0.000668 
+Execution time: 4.208317
+Number of randoms used 100000000 
+Pi is 3.141581 
+The error is 0.000012 
+Execution time: 40.161664
+
+Pi using OpenMp:	3.141664
+Execution time = 1.937985e-02 s
